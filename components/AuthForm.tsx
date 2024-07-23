@@ -47,9 +47,17 @@ const AuthForm = ({ type }: { type: string }) => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         setLoading(true)
         try {
+            const userData={
+                firstName: values.firstName!,
+                lastName: values.lastName!,
+                address: values.address!,
+                postalCode: values.postalCode!,
+                email: values.email,
+                password: values.password,
+            }
             if (type === 'Sign Up') {
-                const userData = await signUp(values)
-                setUser(userData)
+                const newUser = await signUp(userData)
+                setUser(newUser)
             }
             if (type === 'Sign In') {
                 const userData = await signIn({
@@ -96,7 +104,7 @@ const AuthForm = ({ type }: { type: string }) => {
             {
                 user ? (
                     <div className='flex flex-col gap-4'>
-                        <PlaidLink />
+                        {/* <PlaidLink /> */}
                     </div>
                 )
                     :
