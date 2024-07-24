@@ -38,11 +38,11 @@ export const signIn = async ({ email, password }: signInProps) => {
   }
 };
 
-export const signUp = async (values: SignUpParams) => {
-  const { email, password, firstName, lastName } = values;
+export const signUp = async ({password, ...values}: SignUpParams) => {
+  const { email, firstName, lastName } = values;
   let newUserAccount;
   try {
-    const { account, database } = await createAdminClient();
+    const { database , account } = await createAdminClient();
 
     newUserAccount = await account.create(
       ID.unique(),
@@ -117,7 +117,7 @@ export const createLinkToken = async (user: User) => {
       user: {
         client_user_id: user.$id,
       },
-      client_name: user.name,
+      client_name: `${user.firstName} ${user.lastName}`,
       products: ["auth"] as Products[],
       language: "en",
       country_codes: ["US"] as CountryCode[],
@@ -161,7 +161,7 @@ export const createBankAccount = async ({
   }
 };
 
-export const exchangePublicToken = async (publicToken: string, user: User) => {
+export const exchangePublicToken = async ({publicToken, user}: exchangePublicTokenProps) => {
   try {
     const res = await plaidClient.itemPublicTokenExchange({
       public_token: publicToken,
