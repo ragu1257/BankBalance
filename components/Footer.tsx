@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 const Footer = ({ user, type = "desktop" }: FooterProps) => {
-    const Router = useRouter()
+    const router = useRouter()
     const handleLogout = async () => {
-        const logOut = await logoutAccount();
-        if (logOut) Router.push("/sign-in")
+        await logoutAccount();
+        router.push("/sign-in")
     }
 
     return (
