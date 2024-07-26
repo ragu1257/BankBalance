@@ -218,15 +218,6 @@ export const exchangePublicToken = async ({
             throw new Error("Error creating funding source");
         }
 
-        console.log("these are all the values", {
-            userId: user.$id,
-            bankId: itemId,
-            accountId: accountData.account_id,
-            accessToken,
-            fundingSourceUrl,
-            sharableId: encryptId(accountData.account_id),
-        });
-
         // Create a bank account using the user ID, item ID, account ID, access token, funding source URL, and sharable ID
         const bankCreation = await createBankAccount({
             userId: user.$id,
@@ -236,7 +227,6 @@ export const exchangePublicToken = async ({
             fundingSourceUrl,
             sharableId: encryptId(accountData.account_id),
         });
-        console.log("bankCreation", bankCreation);
 
         revalidatePath("/");
         return parseStringify({

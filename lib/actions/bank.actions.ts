@@ -69,25 +69,17 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
         // get bank from db
         const bank = await getBank({ documentId: appwriteItemId });
 
-        console.log("bank", bank);
-        
-
         // get account info from plaid
         const accountsResponse = await plaidClient.accountsGet({
             access_token: bank.accessToken,
         });
         const accountData = accountsResponse.data.accounts[0];
 
-        console.log("accountData", accountData,);
-        
-
         // get transfer transactions from appwrite
         const transferTransactionsData = await getTransactionsByBankId({
             bankId: bank.$id,
         });
 
-        console.log("transferTransactionsData", transferTransactionsData);
-        
         const transferTransactions = transferTransactionsData.documents.map(
             (transferData: Transaction) => ({
                 id: transferData.$id,
