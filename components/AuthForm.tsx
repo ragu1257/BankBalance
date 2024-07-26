@@ -88,7 +88,7 @@ const AuthForm = ({ type }: { type: string }) => {
         <section className="auth-form">
             <header className="flex flex-col gap-5 md:gap-8">
                 <Link href="/" className="flex cursor-pointer items-center gap-1">
-                    <Image src="/icons/logo.svg" width={34} height={34} alt="BankBalance logo" />
+                    <Image src="/icons/logo.png" width={34} height={34} alt="BankBalance logo" />
                     <h1 className=" text-26 font-ibm-plex-serif font-bold text-black-1">
                         BankBalance
                     </h1>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Create Next App",
   description: "Modern banking platform for managing your finances.",
   icons: {
-    icon: './icons/logo.svg',
+    icon: './icons/logo.png',
   }
 };
 

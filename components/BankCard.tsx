@@ -7,7 +7,7 @@ const BankCard = (
 ) => {
     return (
         <div className='flex flex-col'>
-            <Link href="/" className='bank-card'>
+            <Link href={`/transaction-history/?id=${account.appwriteItemId}`} className='bank-card'>
                 <div className='bank-card_content'>
                     <div>
                         <h1 className='text-16 font-semibold text-white'>
@@ -27,8 +27,7 @@ const BankCard = (
                             </h2>
                         </div>
                         <p className='text-14 font-semibold tracking-[1.1px] text-white'>
-                            &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679;<span className='text-16'>
-                                1234
+                            &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; <span className='text-16'> {account?.mask}
                             </span>
                         </p>
                     </article>
